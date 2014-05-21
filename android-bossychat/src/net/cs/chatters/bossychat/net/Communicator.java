@@ -168,11 +168,17 @@ class UserFetcher extends AsyncTask<String, Void, ArrayList<UserData>> {
                 for (int i = 0; i < ResultsArray.length(); i++) {
                     try {
                         UserData tempUser = new UserData();
-                        tempUser.setName(ResultsArray.getString(i));
+                        JSONObject oneElem = new JSONObject(ResultsArray.getString(i));
+                        int status = oneElem.getInt("status");
+
+                        tempUser.setStatus(status);
+                        tempUser.setName(oneElem.getString("username"));
 
                         Log.i("UserFetcher Username:",ResultsArray.getString(i));
 
-                        Users.add(tempUser);
+                        if(status == 1) {
+                            Users.add(tempUser);
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

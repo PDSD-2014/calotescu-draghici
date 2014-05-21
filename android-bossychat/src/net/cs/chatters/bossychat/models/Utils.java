@@ -8,7 +8,7 @@ public class Utils {
 
     public final static String USERNAME = "pinpointchat.USERNAME";
     public final static String ACTION_NEW_MESSAGE = "pinpointchat.NEW_MESSAGE";
-    public static final String ServerURL = "http://192.168.0.104/PDSD";
+    public static final String ServerURL = "http://192.168.1.157/PDSD";
     public final static String SENDER_ID =  "378233293789";
     public final static String LOGGED_IN = "pinpointchat.LOGGED_IN";
     public final static String INTERLOCUTOR = "pinpointchat.INTERLOCUTOR";

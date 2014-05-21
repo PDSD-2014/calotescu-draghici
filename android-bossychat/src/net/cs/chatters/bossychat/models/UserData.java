@@ -7,6 +7,7 @@ public class UserData implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String name;
     private String password;
+    private int status;
     private String regid;
 
     public String getRegid(){
@@ -15,6 +16,10 @@ public class UserData implements Serializable{
 
     public void setRegid(String regid){
         this.regid = regid;
+    }
+
+    public void setStatus(int status){
+        this.status=status;
     }
 
     public UserData(String username){

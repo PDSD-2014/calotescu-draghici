@@ -9,6 +9,7 @@ import net.cs.chatters.bossychat.activities.ChatActivity;
 import net.cs.chatters.bossychat.database.MessagesDatabase;
 import net.cs.chatters.bossychat.models.Message;
 import net.cs.chatters.bossychat.models.Utils;
+import net.cs.chatters.bossychat.net.Communicator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -117,12 +118,17 @@ public class GCMIntentService extends GCMBaseIntentService{
         String sender = intent.getStringExtra("sender");
         String message = intent.getStringExtra("message");
 
-        if(sender!=null){
+        if(sender.equals("ACK_REQUEST")){
+            Log.i("GCM got message to update list status", sender);
+            Communicator com = new Communicator(getApplicationContext());
+            com.getUsers(Utils.username);
+        }
+        else{
             Log.i("GCM got message from", sender);
             Log.i("GCM the message ", message);
             setUnreadMessage(sender);
             db = new MessagesDatabase(getApplicationContext());
-            db.addMessage(new Message(sender, Utils.USERNAME, message,msgNo));
+            db.addMessage(new Message(sender, Utils.username, message,msgNo));
             db.close();
             final String aux = sender;
             displayMessage(aux);
